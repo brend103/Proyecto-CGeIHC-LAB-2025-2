@@ -46,7 +46,19 @@ Camera camera;
 Texture pastoTexture;
 
 
-
+Model BañoM_M;
+Model BañoH_M;
+Model Carpa_M;
+Model Dardo_M;
+Model Escalera_M;
+Model GloboA_M;
+Model GloboV_M;
+Model GloboR_M;
+Model GloboM_M;
+Model GloboN_M;
+Model GloboC_M;
+Model Peluche_M;
+Model Tablero_M;
 Skybox skybox;
 
 
@@ -154,8 +166,32 @@ int main()
 	pastoTexture = Texture("Textures/pastoCamino.tga");
 	pastoTexture.LoadTextureA();
 
-
-
+	BañoH_M = Model();
+	BañoH_M.LoadModel("Models/Baños/Hombre/bañoH.obj");
+	BañoM_M = Model();
+	BañoM_M.LoadModel("Models/Baños/Mujer/bañoM.obj");
+	Carpa_M = Model();
+	Carpa_M.LoadModel("Models/Dardos/Carpa/carpa.obj");
+	Dardo_M = Model();
+	Dardo_M.LoadModel("Models/Dardos/Dardo/dardo.obj");
+	Escalera_M = Model();
+	Escalera_M.LoadModel("Models/Dardos/Escalera/escalera.obj");
+	GloboA_M = Model();
+	GloboA_M.LoadModel("Models/Dardos/Globos/globo_amarillo.obj");
+	GloboM_M = Model();
+	GloboM_M.LoadModel("Models/Dardos/Globos/globo_magenta.obj");
+	GloboN_M = Model();
+	GloboN_M.LoadModel("Models/Dardos/Globos/globo_naranja.obj");
+	GloboR_M = Model();
+	GloboR_M.LoadModel("Models/Dardos/Globos/globo_rojo.obj");
+	GloboV_M = Model();
+	GloboV_M.LoadModel("Models/Dardos/Globos/globo_verde.obj");
+	GloboC_M = Model();
+	GloboC_M.LoadModel("Models/Dardos/Globos/globo_cian.obj");
+	Peluche_M = Model();
+	Peluche_M.LoadModel("Models/Dardos/Peluche/peluches.obj");
+	Tablero_M = Model();
+	Tablero_M.LoadModel("Models/Dardos/Tablero/tablero.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cube_right.png");
@@ -244,11 +280,271 @@ int main()
 
 		meshList[0]->RenderMesh();
 
+		//Juego de daRdos
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(130.0f, -2.0f, 125.0f));
+		model = glm::scale(model, glm::vec3(4.05f, 4.05f, 4.05f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Carpa_M.RenderModel();
+	
+		//Tablero con globos
+		modelaux = model;
+		model = glm::translate(model, glm::vec3(0.0f, 5.50f, -7.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Tablero_M.RenderModel();
+		model = glm::translate(model, glm::vec3(-5.0f, 2.0f, 0.10f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboC_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboC_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		//Segunda fila de globos
+		model = glm::translate(model, glm::vec3(-10.0f, -1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboC_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		//Tercera lifa
+		model = glm::translate(model, glm::vec3(-10.0f, -1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboC_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
 
+		//Cuarta 
+		model = glm::translate(model, glm::vec3(-10.0f, -1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboC_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();;
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboC_M.RenderModel();
+		//quinta 
+		model = glm::translate(model, glm::vec3(-10.0f, -1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboC_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboV_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboM_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboN_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboA_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		GloboR_M.RenderModel();
+		model = modelaux;
+		//escalera con peluches
+		modelaux = model;
+		model = glm::translate(model, glm::vec3(0.0f, 1.540f, 5.30f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Escalera_M.RenderModel();
+		model = glm::translate(model, glm::vec3(0.0f, 1.280f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Peluche_M.RenderModel();
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Dardo_M.RenderModel();
+		model = modelaux;
+		//Baño 1
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(-3.0f, 4.50f, 110.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoM_M.RenderModel();		
+		model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoH_M.RenderModel();
+
+		//baño 2
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(-135.0f, 4.50f, 100.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoM_M.RenderModel();
+
+		model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoH_M.RenderModel();
 		
+		//baño 3
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(200.0f, 4.50f, 100.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoM_M.RenderModel();
 
+		model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoH_M.RenderModel();
+
+		//baño 4
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(161.0f, 4.50f, -110.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoM_M.RenderModel();
+
+		model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoH_M.RenderModel();
+		//baño 5
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(-13.0f, 4.50f, -150.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoM_M.RenderModel();
+
+		model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoH_M.RenderModel();
+		//baño6
+				model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(130.0f, 4.50f, -10.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoM_M.RenderModel();
+
+		model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 0.0f));
+		//model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoH_M.RenderModel();
+		//baño 7
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(-130.0f, 4.50f, -40.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoM_M.RenderModel();
+
+		model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		BañoH_M.RenderModel();
 		glUseProgram(0);
-
 		mainWindow.swapBuffers();
 	}
 
