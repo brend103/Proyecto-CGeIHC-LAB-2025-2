@@ -48,6 +48,7 @@ Texture pastoTexture;
 
 Model BañoM_M;
 Model BañoH_M;
+//DARDOS
 Model Carpa_M;
 Model Dardo_M;
 Model Escalera_M;
@@ -59,6 +60,20 @@ Model GloboN_M;
 Model GloboC_M;
 Model Peluche_M;
 Model Tablero_M;
+//PINOS
+Model Bomba_M;
+Model Linea_M;
+Model Pantalla_M;
+Model Pino_M;
+// JAULA BATEO
+Model Bola_M;
+Model Caja_M;
+Model Campo_M;
+Model Cofre_M;
+Model Espada_M;
+Model Reflector_M;
+Model Reja_M;
+
 Skybox skybox;
 
 
@@ -192,6 +207,28 @@ int main()
 	Peluche_M.LoadModel("Models/Dardos/Peluche/peluches.obj");
 	Tablero_M = Model();
 	Tablero_M.LoadModel("Models/Dardos/Tablero/tablero.obj");
+	Bomba_M = Model();
+	Bomba_M.LoadModel("Models/Boliche/Bomba/bomba.obj");
+	Linea_M = Model();
+	Linea_M.LoadModel("Models/Boliche/Linea/linea.obj");
+	Pantalla_M = Model();
+	Pantalla_M.LoadModel("Models/Boliche/Pantalla/pantalla.obj");
+	Pino_M = Model();
+	Pino_M.LoadModel("Models/Boliche/Pino/pino.obj");
+	Bola_M = Model();
+	Bola_M.LoadModel("Models/JaulaBateo/Bola/pinecone.obj");
+	Caja_M = Model();
+	Caja_M.LoadModel("Models/JaulaBateo/Caja/caja.obj");
+	Campo_M = Model();
+	Campo_M.LoadModel("Models/JaulaBateo/Campo/campo.obj");
+	Cofre_M = Model();
+	Cofre_M.LoadModel("Models/JaulaBateo/Cofre/cofre.obj");
+	Espada_M = Model();
+	Espada_M.LoadModel("Models/JaulaBateo/Espada/espada.obj");
+	Reflector_M = Model();
+	Reflector_M.LoadModel("Models/JaulaBateo/Reflector/reflector.obj");
+	Reja_M = Model();
+	Reja_M.LoadModel("Models/JaulaBateo/Reja/reja.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cube_right.png");
@@ -476,6 +513,90 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Dardo_M.RenderModel();
 		model = modelaux;
+
+		//BOLOS 
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(273.50f, 21.40f, -27.0f));
+		model = glm::scale(model, glm::vec3(4.05f, 4.05f, 4.05f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pantalla_M.RenderModel();
+		//Pista de bolos
+		modelaux = model;
+		model = glm::translate(model, glm::vec3(0.0f, -5.50f, 8.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 0.2f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Linea_M.RenderModel();
+		model = modelaux;
+		//bolos 
+		modelaux = model;
+		model = glm::translate(model, glm::vec3(-5.60f, -4.9f, 1.60f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+
+		model = glm::translate(model, glm::vec3(-2.50f, -0.0f, 0.50f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(-1.50f, -0.0f, 0.50f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(-0.50f, -0.0f, 0.50f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = modelaux;
+		modelaux = model;
+		model = glm::translate(model, glm::vec3(2.50f, -4.9f, 1.60f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+
+		model = glm::translate(model, glm::vec3(-2.50f, -0.0f, 0.50f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+
+		model = glm::translate(model, glm::vec3(-1.50f, -0.0f, 0.50f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(1.0f, -0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		model = glm::translate(model, glm::vec3(-0.50f, -0.0f, 0.50f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pino_M.RenderModel();
+		
+	
 		//Baño 1
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(-3.0f, 4.50f, 110.0f));
